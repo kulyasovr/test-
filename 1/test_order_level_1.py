@@ -5,16 +5,13 @@ def test_create_and_check_order():
         "product_id": 1,
         "quantity": 2
     })
-    
     assert create_resp.status_code == 201
     
     data = create_resp.json()
-
     assert "order_id" in data
+    
     order_id = data["order_id"]
-    
     get_resp = send_request("GET", f"/orders/{order_id}")
-    
     assert get_resp.status_code == 200
 
     order_data = get_resp.json()
